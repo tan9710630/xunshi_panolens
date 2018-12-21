@@ -1,0 +1,50 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <title>全景测试</title>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/three.min.js"></script>
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/xunshi_panolens.js"></script>
+        <script src="js/Projector.js"></script>
+    </head>
+    <style>
+        body,html{
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            overflow: hidden;
+            touch-action: none;
+        }
+        .container{
+            margin: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <body>
+        
+        <div id="haha" class="container">
+            <a id="textinfo" style="position: absolute;">不要搞，这是测试</a>
+        </div>
+       
+        <!-- <button id="set" style="position: absolute;top: 0px;">切换全景图</button> -->
+    </body>
+    <script>
+        var view = new XUNSHI.View({
+            container:document.getElementById("haha"),
+            fov:90,
+            debug:false
+        });
+        view.add_panolens(new XUNSHI.Panolen("shit","/img/1-1.jpg"))
+        view.add_panolens(new XUNSHI.Panolen("fuck","/img/1-2.jpg"))
+        view.AddInfoSpot(new XUNSHI.InfoSpot(document.getElementById('textinfo'),{x: 485.64164427555977, y: 118.74337511248147, z: -4.857366824926812}))
+        view.StartRender();
+        //view.EnableGyroscope();
+        $('#set').click(function(){
+            view.ShowPanolen("fuck");
+        })
+    </script>
+</html>
